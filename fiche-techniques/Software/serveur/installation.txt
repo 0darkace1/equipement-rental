@@ -1,0 +1,59 @@
+----------------------------------------------------------------
+1) USER CREATION & SUDO INSTALLATION:
+
+
+# Add user:
+adduser <username>
+
+# Update APT database:
+apt update
+
+# Install sudo package:
+apt install sudo
+
+# Add user to sudoers group:
+usermod -aG sudo <username>
+
+----------------------------------------------------------------
+
+2) DOCKER INSTALLATION & TEST:
+
+
+# Update APT database:
+sudo apt-get update
+
+# Install Docker PGP key:
+sudo apt-get install ca-certificates curl gnupg
+sudo install -m 0755 -d /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+# Add the repository to Apt sources:
+echo \ 
+    "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian \ 
+    $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \ 
+    sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Update APT database:
+sudo apt update
+
+
+# Install Docker packages:
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+# Verify docker installation:
+sudo docker run hello-world
+
+----------------------------------------------------------------
+
+3) POST INSTALL DOCKER ON LINUX
+
+
+To run Docker without sudo:
+
+# Create the docker group.
+sudo groupadd docker
+
+# Add your user to the docker group.
+
+----------------------------------------------------------------
