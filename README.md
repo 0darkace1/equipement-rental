@@ -1,6 +1,6 @@
 <div align="center">
   <kbd>
-    <img src="https://github.com/0darkace1/machinery-location/blob/main/src/assets/images/icon.png" width="150" height="150" />
+    <img src="https://github.com/0darkace1/equipement-rental/blob/main/src/assets/images/icon.png" width="150" height="150" />
   </kbd>
 </div>
 
