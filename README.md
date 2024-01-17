@@ -1,13 +1,8 @@
 <div align="center">
   <kbd>
-    <img src="fiche-techniques/Entreprise/icon.png" width="150" height="150" />
+    <img src="https://github.com/0darkace1/machinery-location/blob/main/src/assets/images/icon.png" width="150" height="150" />
   </kbd>
 </div>
-<!-- <div align="center">
-  <kbd>
-    <img src="https://github.com/0darkace1/machinery-location/blob/main/fiche-techniques/Entreprise/icon.png" width="350" height="350" />
-  </kbd>
-</div> -->
 
 # Gestion et Localisation d'engins de chantier
 
