@@ -1,5 +1,14 @@
 import AuthProvider from "@/components/AuthProvider";
+import AppLayout from "@/components/app/Layout/AppLayout";
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  return <AuthProvider>{children}</AuthProvider>;
+export default function AppRootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <AuthProvider>
+      <AppLayout>{children}</AppLayout>
+    </AuthProvider>
+  );
 }

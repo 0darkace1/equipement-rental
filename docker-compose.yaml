@@ -23,43 +23,49 @@ services:
   #   ports:
   #     - ${APP_PORT}:3000
 
-  # MySQL 8 Server
-  app-db:
-    image: mysql:8.0
-    container_name: ${MYSQL_HOST}
-    # NOTE: use of "mysql_native_password" is not recommended: https://dev.mysql.com/doc/refman/8.0/en/upgrading-from-previous-series.html#upgrade-caching-sha2-password
-    # (this is just an example, not intended to be a production configuration)
-    command: --default-authentication-plugin=caching_sha2_password
-    restart: always
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    volumes:
-      - mysql-data:/var/lib/mysql
-    ports:
-      - "${MYSQL_PORT}:3306"
+  # MariaDB Server
+  # app-db:
+  #   image: mariadb:10.11
+  #   container_name: ${MYSQL_HOST}
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+  #     MYSQL_DATABASE: ${MYSQL_DATABASE}
+  #     MYSQL_USER: ${MYSQL_USER}
+  #     MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+  #     MARIADB_AUTO_UPGRADE: 1
+  #   command: ["--max-allowed-packet=128M", "--innodb-log-file-size=64M"]
+  #   ports:
+  #     - "${MYSQL_PORT}:3306"
+  #   networks:
+  #     - default
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-u", "root", "--password=nuhH3AXbqOQjZnviM5Qa1SdpGzWJmtBspBhrXehvFaA="]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
 
   # Adminer MySQL Admin Tool
-  # app-adminer:
-  #   image: adminer
-  #   container_name: app-adminer
-  #   restart: always
-  #   ports:
-  #     - ${ADMINER_PORT}:8080
+  app-adminer:
+    image: adminer
+    container_name: app-adminer
+    restart: always
+    ports:
+      - ${ADMINER_PORT}:8080
 
   # mqtt5 eclipse-mosquitto
-  # mqtt5:
-  #   image: eclipse-mosquitto
-  #   container_name: ${MQTT_HOST}
-  #   ports:
-  #     - "${MQTT_PORT}:1883" #default mqtt port
-  #     - "${MQTT_WS_PORT}:9001" #default mqtt port for websockets
-  #   volumes:
-  #     - mqtt-config:/mosquitto/config:rw
-  #     - mqtt-data:/mosquitto/data:rw
-  #     - mqtt-log:/mosquitto/log:rw
+  mqtt5:
+    image: eclipse-mosquitto
+    container_name: ${MQTT_HOST}
+    ports:
+      - "${MQTT_PORT}:1883" #default mqtt port
+      - "${MQTT_WS_PORT}:9001" #default mqtt port for websockets
+    volumes:
+      - mqtt-config:/mosquitto/config:rw
+      - mqtt-data:/mosquitto/data:rw
+      - mqtt-log:/mosquitto/log:rw
 
 # volumes for mapping data,config and log
 volumes:
